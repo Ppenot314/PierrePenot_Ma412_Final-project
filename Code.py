@@ -5,6 +5,11 @@ from sklearn.cluster import KMeans
 # Load the dataset
 data = np.load('data.npy')
 
+# Transposing the data to have samples as rows and features as columns
+data = data.T
+
+#step 1 vizualise the solution. 
+
 # Apply K-Means with a range of cluster counts
 inertia = []
 K_range = range(1, 50)
