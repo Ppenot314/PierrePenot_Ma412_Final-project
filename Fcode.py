@@ -80,7 +80,7 @@ data = data.T
 
 
 ## 2 Find the optimal number of clusters #############################################################
-max_k = 50  # Max number of clusters to consider, this value is sencitive 
+max_k = 12  # Max number of clusters to consider, this value is sencitive 
 optimal_k = k_means(data, max_k)
 print("Max number of clusters to consider whe searching optimal_k:", max_k)
 print("Optimal number of clusters:", optimal_k)
