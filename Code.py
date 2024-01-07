@@ -12,9 +12,9 @@ data = data.T
 
 # Apply K-Means with a range of cluster counts
 inertia = []
-K_range = range(1, 50)
+K_range = range(1, 20)
 for k in K_range:
-    kmeans = KMeans(n_clusters=k, random_state=0).fit(data)
+    kmeans = KMeans(n_clusters=k ).fit(data)
     inertia.append(kmeans.inertia_)
 
 # Plotting the Graph
@@ -26,3 +26,4 @@ plt.ylabel('Inertia')
 plt.xticks(K_range)
 plt.grid(True)
 plt.show()
+
