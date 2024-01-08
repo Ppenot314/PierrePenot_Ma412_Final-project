@@ -83,7 +83,7 @@ def evaluate_clusters(data, clusters, centroids):
     """
     Evaluates the quality of clusters using different metrics coded by sklearn.
     """
-    silhouette_avg = HM_silhouette_score(data, clusters, centroids)
+    silhouette_avg = silhouette_score(data, clusters)
     calinski_harabasz = calinski_harabasz_score(data, clusters)
     davies_bouldin = davies_bouldin_score(data, clusters)
     return silhouette_avg, calinski_harabasz, davies_bouldin
@@ -102,7 +102,7 @@ train_data, test_data = train_test_split(data, test_size=0.2)
 ## 2 Find the optimal number of clusters #############################################################
 max_k = 2  # Max number of clusters to consider, this value is sencitive 
 optimal_k = Optimal_k_finder(train_data, max_k)
-optimal_k = 7  # This line is here juste so i have less calcul time and put max_k = 2
+optimal_k = 5  # This line is here juste so i have less calcul time and put max_k = 2
 print("Max number of clusters to consider whe searching optimal_k:", max_k)
 print("Optimal number of clusters:", optimal_k)
 
