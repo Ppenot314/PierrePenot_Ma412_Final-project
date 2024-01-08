@@ -1,3 +1,5 @@
+#in this code we will focus on the visalisation of the clusters formed by the kmeans methode
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -36,7 +38,7 @@ def update_centroids(data, clusters, k):
             new_centroids[i] = np.mean(points_in_cluster, axis=0)
     return new_centroids
 
-def k_means(data, k, max_iterations=100):
+def k_means(data, k, max_iterations=500):
     """
     Performs K-Means clustering
     """

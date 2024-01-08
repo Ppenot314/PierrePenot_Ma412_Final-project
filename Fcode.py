@@ -1,3 +1,4 @@
+#in this code we will focus on judging the quality of the clusters created by our algorithm (reposing on the kmeans methode)
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -50,20 +51,27 @@ def silhouette_score(data, clusters, centroids):
         silhouette_scores.append(score)
     return np.mean(silhouette_scores)
 
-def k_means(data, max_k, max_iterations=100):
+def k_means(data, k, max_iterations=200):
     """
-    Performs K-Means clustering
+    Performs K-Means clustering.
+    """
+    centroids = initialize_centroids(data, k)
+    for _ in range(max_iterations):
+        clusters = assign_clusters(data, centroids)
+        new_centroids = update_centroids(data, clusters, k)
+        if np.all(centroids == new_centroids):
+            break
+        centroids = new_centroids
+    return clusters, centroids
+
+def Optimal_k_finder(data, max_k, max_iterations=200):
+    """
+    Determines the optimal number of clusters (K) for K-Means clustering.
     """
     best_k = 2
     best_score = -1
     for k in range(2, max_k + 1):  # Starting from 2 because silhouette score is not defined for k=1
-        centroids = initialize_centroids(data, k)
-        for _ in range(max_iterations):
-            clusters = assign_clusters(data, centroids)
-            new_centroids = update_centroids(data, clusters, k)
-            if np.all(centroids == new_centroids):
-                break
-            centroids = new_centroids
+        clusters, centroids = k_means(data, k, max_iterations)
         score = silhouette_score(data, clusters, centroids)
         if score > best_score:
             best_score = score
@@ -81,7 +89,7 @@ data = data.T
 
 ## 2 Find the optimal number of clusters #############################################################
 max_k = 12  # Max number of clusters to consider, this value is sencitive 
-optimal_k = k_means(data, max_k)
+optimal_k = Optimal_k_finder(data, max_k)
 print("Max number of clusters to consider whe searching optimal_k:", max_k)
 print("Optimal number of clusters:", optimal_k)
 
