@@ -100,9 +100,9 @@ data = data.T
 train_data, test_data = train_test_split(data, test_size=0.2)
 
 ## 2 Find the optimal number of clusters #############################################################
-max_k = 2  # Max number of clusters to consider, this value is sencitive 
+max_k = 20  # Max number of clusters to consider, this value can make th computing time go very high when higher than 50
 optimal_k = Optimal_k_finder(train_data, max_k)
-optimal_k = 5  # This line is here juste so i have less calcul time and put max_k = 2
+#optimal_k = 5  # This line is here juste so i have less computing time and put max_k = 2 when i do tests
 print("Max number of clusters to consider whe searching optimal_k:", max_k)
 print("Optimal number of clusters:", optimal_k)
 
