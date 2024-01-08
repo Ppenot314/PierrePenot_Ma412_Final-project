@@ -51,7 +51,7 @@ clusters_agglo = agglo.labels_
 
 # Spectral Clustering 
 
-# The n_clusters is taken form our previous results 
+# The n_clusters is taken form our previous results , changing it doesn't seam to improve the results (they are very bad)
 spectral = SpectralClustering(n_clusters=5, affinity='nearest_neighbors')
 spectral.fit(data)
 clusters_spectral = spectral.labels_
